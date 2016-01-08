@@ -7,7 +7,7 @@ import com.github.dvdme.ForecastIOLib.ForecastIO;
 
 public class ShowFields {
 
-	public static final String API_KEY = "d472db24f0f741166c62dbcdb65b3181";
+	public static final String API_KEY = "enter_your_api_key_here";
 	
 	// coordinates of Salzburg/Austria
 	public static final String LATITUDE = "47.815470";
