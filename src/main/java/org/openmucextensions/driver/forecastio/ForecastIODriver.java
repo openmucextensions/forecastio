@@ -58,12 +58,27 @@ public class ForecastIODriver implements DriverService {
 			throws ArgumentSyntaxException, ConnectionException {
 		
 		if(settings==null||settings.isEmpty()) throw new ArgumentSyntaxException("Settings must contain the API key");
+		logger.info("settings " + settings);
+		
+		String[] settingspart = settings.trim().split(",");
+		logger.info("settingparlength: " + settingspart.length);
+		
+		if ((settingspart.length > 1) && (settingspart.length != 3)) { 
+			throw new ArgumentSyntaxException("Settings must contain the API key, proxy-hostname and proxy-port, separated by a comma");
+		}
+		
+		String apikey = settingspart[0];
+		logger.info("API-Key: " + apikey);
 		
 		String[] coordinates = deviceAddress.trim().split(",");
 		if(coordinates.length != 2) {
 			throw new ArgumentSyntaxException("Invalid device address " + deviceAddress + ", expected format is LATITUDE,LONGITUDE");
 		} else {
-			ForecastIOConnection connection = new ForecastIOConnection(settings);
+			ForecastIOConnection connection = new ForecastIOConnection(apikey);
+			if (settingspart.length == 3) {
+				connection.setHTTPProxy(settingspart[1],Integer.parseInt(settingspart[2]));
+			}
+	
 			connection.startForecastRetrieval(coordinates[0], coordinates[1]);
 			return connection;
 		}
