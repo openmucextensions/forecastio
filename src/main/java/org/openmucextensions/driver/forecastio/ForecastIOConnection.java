@@ -43,6 +43,10 @@ public class ForecastIOConnection implements Connection, ForecastReceivedCallbac
 		values = new TreeMap<>();
 	}
 	
+	public void setHTTPProxy( final String proxhostname, final int proxyport) {
+		forecast.setHTTPProxy(proxhostname, proxyport);
+	}
+	
 	public void startForecastRetrieval(final String latitude, final String longitude) {
 		retrieveForecastTimer = new Timer("ForecastIO-driver", true);
 		RetrieveForecastTask task = new RetrieveForecastTask(forecast, latitude, longitude, this);
