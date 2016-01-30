@@ -26,3 +26,19 @@ As mentioned before, an OpenMUC device represents the forecast for a single loca
 * If a proxy has to be used, the settings string must contain the API key, the http-proxy-name and port, separated by a comma, e.g. `YOUR_API_KEY,127.0.0.1,8080`.
 
 After a new device has been configured, the forecast will be retrieved immediately. Because available data fields may vary with the specified location, use OpenMUC's channel scan to get a list of available fields.
+
+Following an example of a channel-configuration using this driver in the channels.xml in the OpenMUC Framework. In this example no proxy is used an only one Channel is defined, the lastupdate-Channel:
+    
+    <driver id="forecastio">
+        <device id="forecastio_salzburg">
+          <description>Weather forecast information of Salzburg</description>
+          <deviceAddress>47.815470,13.046815</deviceAddress>
+          <settings>"YOUR_API_KEY"</settings>
+	      <channel id="LastUpdate">
+            <channelAddress>forecastio/lastupdate</channelAddress>
+		    <description>Timestamp of the last received forcast</description>
+            <unit>-</unit>
+            <samplingInterval>5s</samplingInterval>
+          </channel>
+        </device>
+    </driver>
