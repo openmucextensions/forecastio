@@ -7,6 +7,17 @@ If reading a value using OpenMUC's data manager, a temporarily stored value will
 
 This driver implementation is based on the underlying [Java Wrapper Library] (https://github.com/dvdme/forecastio-lib-java) by David Ervideira.
 
+## Build
+The driver can be built via gradle by executing
+    
+    gradle clean build
+
+The dependency to OpenMUC has to be resolved by installing OpenMUC into the local repository on your system. Download OpenMUC from the [project's website] (https://www.openmuc.org/index.php?id=53) and install the bundles by executing
+
+    gradle install
+    
+Don't foreget to set the right OpenMUC version in the build file of the OpenMUC extension.
+
 ## Setting up a device
 As mentioned before, an OpenMUC device represents the forecast for a single location. Because forecasts may be retrieved for any location specified by its coordinates, a device scan is not supported by the driver. The following device properties must be set:
 
