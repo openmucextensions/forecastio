@@ -58,10 +58,8 @@ public class ForecastIODriver implements DriverService {
 			throws ArgumentSyntaxException, ConnectionException {
 		
 		if(settings==null||settings.isEmpty()) throw new ArgumentSyntaxException("Settings must contain the API key");
-		logger.info("settings " + settings);
 		
 		String[] settingspart = settings.trim().split(",");
-		logger.info("settingparlength: " + settingspart.length);
 		
 		if ((settingspart.length > 1) && (settingspart.length != 3)) { 
 			throw new ArgumentSyntaxException("Settings must contain the API key, proxy-hostname and proxy-port, separated by a comma");
@@ -77,6 +75,8 @@ public class ForecastIODriver implements DriverService {
 			ForecastIOConnection connection = new ForecastIOConnection(apikey);
 			if (settingspart.length == 3) {
 				connection.setHTTPProxy(settingspart[1],Integer.parseInt(settingspart[2]));
+				logger.info("Proxyname: " + settingspart[1]);
+				logger.info("Proxyport: " + Integer.parseInt(settingspart[2]));
 			}
 	
 			connection.startForecastRetrieval(coordinates[0], coordinates[1]);
