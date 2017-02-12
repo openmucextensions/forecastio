@@ -32,7 +32,7 @@ public class ForecastIODriver implements DriverService {
 		logger.info("Activating ForecastIO driver");
 	}
 	
-	protected void deactivated(ComponentContext context) {
+	protected void deactivate(ComponentContext context) {
 		logger.info("Deactivating ForecastIO driver");
 	}
 	
